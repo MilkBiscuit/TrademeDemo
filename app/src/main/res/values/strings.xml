@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TrademeDemo</string>
+    <string name="search_trade_me">Search Trade Me</string>
+    <string name="browse_categories">Browse categories</string>
+</resources>

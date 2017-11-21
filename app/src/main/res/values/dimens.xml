@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="smaller">8dp</dimen>
+    <dimen name="small">12dp</dimen>
+    <dimen name="normal">16dp</dimen>
+    <dimen name="big">20dp</dimen>
+    <dimen name="bigger">24dp</dimen>
+
+    <dimen name="text_size_smaller">10sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_normal">18sp</dimen>
+    <dimen name="text_size_big">22sp</dimen>
+    <dimen name="text_size_bigger">26sp</dimen>
+
+    <!-- Common search view -->
+    <dimen name="search_layout_height">100dp</dimen>
+
+    <dimen name="list_item_height">44dp</dimen>
+    <dimen name="divide_line_height">1px</dimen>
+
+</resources>
