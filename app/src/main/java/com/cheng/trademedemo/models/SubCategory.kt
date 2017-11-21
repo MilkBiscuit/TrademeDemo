@@ -7,18 +7,14 @@ open class SubCategory(
         val Name: String? = null,
         val Number: String? = null,
         val Path: String? = null,
-        val CanHaveSecondCategory: Boolean = false,
-        val CanBeSecondCategory: Boolean = false,
         val Subcategories: List<SubCategory>? = null,
-        open val IsLeaf: Boolean = false
+        val IsLeaf: Boolean = false
 ) : Parcelable {
 
     constructor(source: Parcel) : this(
             source.readString(),
             source.readString(),
             source.readString(),
-            1 == source.readInt(),
-            1 == source.readInt(),
             ArrayList<SubCategory>().apply { source.readList(this, SubCategory::class.java.classLoader) },
             1 == source.readInt()
     )
@@ -29,8 +25,6 @@ open class SubCategory(
         writeString(Name)
         writeString(Number)
         writeString(Path)
-        writeInt((if (CanHaveSecondCategory) 1 else 0))
-        writeInt((if (CanBeSecondCategory) 1 else 0))
         writeList(Subcategories)
         writeInt((if (IsLeaf) 1 else 0))
     }

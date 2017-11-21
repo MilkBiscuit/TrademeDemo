@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     if (categoryResponse != null) {
                         hideNoDataHint()
 
-                        val categoryListFragment = CategoryListFragment.newInstance(categoryResponse.subcategories!!)
+                        val categoryListFragment = CategoryListFragment.newInstance(categoryResponse)
                         FragmentUtil.setContentFragment(supportFragmentManager, categoryListFragment, false)
                     }
                 } else {

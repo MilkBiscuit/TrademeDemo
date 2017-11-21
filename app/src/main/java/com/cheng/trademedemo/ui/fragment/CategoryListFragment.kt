@@ -11,33 +11,35 @@ import android.view.ViewGroup
 import com.cheng.trademedemo.R
 import com.cheng.trademedemo.models.SubCategory
 import com.cheng.trademedemo.service.TradeMeApiService
+import com.cheng.trademedemo.ui.MainActivity
+import com.cheng.trademedemo.ui.OnListItemClickedListener
 import com.cheng.trademedemo.ui.adapter.CategoryListRecyclerViewAdapter
 import com.cheng.trademedemo.ui.util.FragmentUtil
-import com.cheng.trademedemo.ui.OnListItemClickedListener
-import java.util.ArrayList
+import com.cheng.trademedemo.ui.util.UIUtil
+import java.util.*
 
 class CategoryListFragment : Fragment() {
 
     companion object {
-        fun newInstance(subCategories: List<SubCategory>): CategoryListFragment {
+        fun newInstance(subCategory: SubCategory): CategoryListFragment {
             val fragment = CategoryListFragment()
-            fragment.subCategories = subCategories
+            fragment.subCategory = subCategory
 
             return fragment
         }
     }
 
-    private val KEY_SUB_CATEGORIES = "SubCategories";
+    private val KEY_SUB_CATEGORY = "SubCategory";
     private val TRANSACTION_NAME_SEARCH_RESULTS = "SearchResults";
 
-    private var subCategories: List<SubCategory>? = null
+    private var subCategory: SubCategory? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState != null) {
-            if (savedInstanceState.containsKey(KEY_SUB_CATEGORIES)) {
-                subCategories = savedInstanceState.getParcelableArrayList(KEY_SUB_CATEGORIES)
+            if (savedInstanceState.containsKey(KEY_SUB_CATEGORY)) {
+                subCategory = savedInstanceState.getParcelable(KEY_SUB_CATEGORY)
             }
         }
     }
@@ -46,22 +48,24 @@ class CategoryListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
 
-        createItemClickListener()
+        UIUtil.setCategoryPath(activity as MainActivity, subCategory!!.Path!!)
 
         if (view is RecyclerView) {
             val recyclerView : RecyclerView = view
             val context = view.getContext()
             recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = CategoryListRecyclerViewAdapter(subCategories!!, createItemClickListener())
+            recyclerView.adapter = CategoryListRecyclerViewAdapter(subCategory!!.Subcategories!!,
+                    createItemClickListener())
         }
+
         return view
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
 
-        outState?.putParcelableArrayList(KEY_SUB_CATEGORIES,
-                subCategories as ArrayList<out Parcelable>)
+        outState?.putParcelableArrayList(KEY_SUB_CATEGORY,
+                subCategory as ArrayList<out Parcelable>)
     }
 
     private fun createItemClickListener() : OnListItemClickedListener<SubCategory> {
@@ -81,10 +85,12 @@ class CategoryListFragment : Fragment() {
                             },
                             {})
                 } else {
-                    val fragment = newInstance(item.Subcategories!!)
+                    val fragment = newInstance(item)
                     FragmentUtil.setContentFragment(fragmentManager, fragment,
                             true, item.Name)
                 }
+
+                UIUtil.setCategoryPath(activity as MainActivity, item.Path!!)
             }
         }
     }
