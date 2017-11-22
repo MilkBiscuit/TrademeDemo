@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.cheng.trademedemo.R
-import com.cheng.trademedemo.models.SubCategory
+import com.cheng.trademedemo.model.SubCategory
 import com.cheng.trademedemo.ui.OnListItemClickedListener
 
 class CategoryListRecyclerViewAdapter(

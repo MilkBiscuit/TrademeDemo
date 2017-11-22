@@ -5,7 +5,7 @@ import android.text.TextUtils
 import android.widget.TextView
 import android.widget.Toast
 import com.cheng.trademedemo.R
-import com.cheng.trademedemo.ui.MainActivity
+import com.cheng.trademedemo.ui.activity.MainActivity
 
 object UIUtil {
 

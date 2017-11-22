@@ -1,4 +1,4 @@
-package com.cheng.trademedemo.models
+package com.cheng.trademedemo.model
 
 data class SearchResponse (
     val TotalCount: Int = 0,

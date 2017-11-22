@@ -1,7 +1,8 @@
 package com.cheng.trademedemo.service
 
 import android.content.Context
-import com.cheng.trademedemo.models.SearchResponse
+import com.cheng.trademedemo.model.CategoryResponse
+import com.cheng.trademedemo.model.SearchResponse
 import com.cheng.trademedemo.ui.util.UIUtil
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,14 +30,77 @@ object TradeMeApiService {
         return apiInterface!!
     }
 
+    fun requestCategories(
+            context: Context,
+            successCallback: (response: CategoryResponse) -> Unit,
+            failCallback: () -> Unit
+    ) {
+        val tradeMeApiInterface = getApiInterface()
+        val call = tradeMeApiInterface.fetchCategories()
+        call.enqueue(object : Callback<CategoryResponse> {
+            override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
+                val categoryResponse = response.body()
+                if (categoryResponse != null) {
+                    successCallback(categoryResponse)
+                }
+
+                if (response.code() != SUCCESS_CODE) {
+                    UIUtil.showToast(context, response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<CategoryResponse>?, t: Throwable?) {
+                failCallback()
+
+                val message = t?.localizedMessage
+                if (message != null) {
+                    UIUtil.showToast(context, message)
+                }
+            }
+        })
+    }
+
     fun searchCategory(
             context: Context,
             categoryNumber: String,
             successCallback: (searchResponse: SearchResponse) -> Unit,
-            failCallback: () -> Unit ) {
-
+            failCallback: () -> Unit
+    ) {
         val tradeMeApiInterface = getApiInterface()
         val call = tradeMeApiInterface.searchCategory(categoryNumber)
+        call.enqueue(object: Callback<SearchResponse> {
+
+            override fun onResponse(call: Call<SearchResponse>?, response: Response<SearchResponse>) {
+                val searchResponse = response.body()
+                if (searchResponse != null) {
+                    successCallback(searchResponse)
+                }
+
+                if (response.code() != SUCCESS_CODE) {
+                    UIUtil.showToast(context, response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<SearchResponse>?, t: Throwable?) {
+                failCallback()
+
+                val message = t?.localizedMessage
+                if (message != null) {
+                    UIUtil.showToast(context, message)
+                }
+            }
+
+        })
+    }
+
+    fun searchKeyword(
+            context: Context,
+            keyword: String,
+            successCallback: (searchResponse: SearchResponse) -> Unit,
+            failCallback: () -> Unit
+    ) {
+        val tradeMeApiInterface = getApiInterface()
+        val call = tradeMeApiInterface.searchKeyword(keyword)
         call.enqueue(object: Callback<SearchResponse> {
 
             override fun onResponse(call: Call<SearchResponse>?, response: Response<SearchResponse>) {

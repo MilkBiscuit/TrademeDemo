@@ -1,7 +1,6 @@
 package com.cheng.trademedemo.ui.fragment
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -9,14 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.cheng.trademedemo.R
-import com.cheng.trademedemo.models.SubCategory
+import com.cheng.trademedemo.model.SubCategory
 import com.cheng.trademedemo.service.TradeMeApiService
-import com.cheng.trademedemo.ui.MainActivity
+import com.cheng.trademedemo.ui.activity.MainActivity
 import com.cheng.trademedemo.ui.OnListItemClickedListener
 import com.cheng.trademedemo.ui.adapter.CategoryListRecyclerViewAdapter
 import com.cheng.trademedemo.ui.util.FragmentUtil
 import com.cheng.trademedemo.ui.util.UIUtil
-import java.util.*
 
 class CategoryListFragment : Fragment() {
 
@@ -30,7 +28,6 @@ class CategoryListFragment : Fragment() {
     }
 
     private val KEY_SUB_CATEGORY = "SubCategory";
-    private val TRANSACTION_NAME_SEARCH_RESULTS = "SearchResults";
 
     private var subCategory: SubCategory? = null
 
@@ -64,14 +61,15 @@ class CategoryListFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
 
-        outState?.putParcelableArrayList(KEY_SUB_CATEGORY,
-                subCategory as ArrayList<out Parcelable>)
+        outState?.putParcelable(KEY_SUB_CATEGORY, subCategory)
     }
 
     private fun createItemClickListener() : OnListItemClickedListener<SubCategory> {
         return object : OnListItemClickedListener<SubCategory> {
             override fun onListItemClicked(item: SubCategory) {
                 if (item.IsLeaf) {
+                    UIUtil.setCategoryPath(activity as MainActivity, item.Path!!)
+
                     TradeMeApiService.searchCategory(
                             context,
                             item.Number!!,
@@ -79,19 +77,17 @@ class CategoryListFragment : Fragment() {
                                 if (searchResponse.List != null) {
                                     val listings = searchResponse.List
                                     val fragment = ItemListFragment.newInstance(listings)
-                                    FragmentUtil.setContentFragment(fragmentManager, fragment,
-                                            true, TRANSACTION_NAME_SEARCH_RESULTS)
+                                    FragmentUtil.setCategoryListFragment(fragmentManager, fragment,
+                                            item.Path)
                                 }
                             },
                             {})
                 } else {
                     val fragment = newInstance(item)
-                    FragmentUtil.setContentFragment(fragmentManager, fragment,
-                            true, item.Name)
+                    FragmentUtil.setCategoryListFragment(fragmentManager, fragment, item.Name)
                 }
-
-                UIUtil.setCategoryPath(activity as MainActivity, item.Path!!)
             }
         }
     }
+
 }

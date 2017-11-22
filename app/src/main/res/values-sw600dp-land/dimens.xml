@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Listing item detail -->
+    <dimen name="item_image_margin_top">50dp</dimen>
+
+</resources>

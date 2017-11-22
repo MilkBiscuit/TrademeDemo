@@ -9,7 +9,7 @@ import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.NetworkImageView
 import com.android.volley.toolbox.Volley
 import com.cheng.trademedemo.R
-import com.cheng.trademedemo.models.Listing
+import com.cheng.trademedemo.model.Listing
 import com.cheng.trademedemo.ui.BitmapCache
 import com.cheng.trademedemo.ui.OnListItemClickedListener
 
@@ -25,8 +25,6 @@ class ItemListRecyclerViewAdapter(
         var item: Listing? = null
     }
 
-    var imageLoader: ImageLoader? = null
-
     override fun getItemCount(): Int {
         return listings.size
     }
@@ -34,9 +32,6 @@ class ItemListRecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.list_item_item, parent, false)
-
-        val queue = Volley.newRequestQueue(parent.context)
-        imageLoader = ImageLoader(queue, BitmapCache())
 
         return ViewHolder(view)
     }
@@ -49,6 +44,9 @@ class ItemListRecyclerViewAdapter(
         val imageUrl = listings[position].PictureHref
         holder.imageView.setErrorImageResId(R.drawable.ic_error)
         holder.imageView.setDefaultImageResId(R.drawable.ic_photo)
+
+        val queue = Volley.newRequestQueue(holder.imageView.context)
+        val imageLoader = ImageLoader(queue, BitmapCache())
         holder.imageView.setImageUrl(imageUrl, imageLoader)
 
         holder.view.setOnClickListener {

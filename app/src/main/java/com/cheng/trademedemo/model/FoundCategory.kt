@@ -1,4 +1,4 @@
-package com.cheng.trademedemo.models
+package com.cheng.trademedemo.model
 
 data class FoundCategory (
     val Count: Int = 0,

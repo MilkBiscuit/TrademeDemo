@@ -1,4 +1,4 @@
-package com.cheng.trademedemo.models
+package com.cheng.trademedemo.model
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -10,7 +10,8 @@ data class Listing(
         val PictureHref: String? = null,
         val IsNew: Boolean = true,
         val Region: String? = null,
-        val Suburb: String? = null
+        val Suburb: String? = null,
+        val PriceDisplay: String? = null
 ) : Parcelable {
     constructor(source: Parcel) : this(
             source.readLong(),
@@ -18,6 +19,7 @@ data class Listing(
             source.readString(),
             source.readString(),
             1 == source.readInt(),
+            source.readString(),
             source.readString(),
             source.readString()
     )
@@ -32,6 +34,7 @@ data class Listing(
         writeInt((if (IsNew) 1 else 0))
         writeString(Region)
         writeString(Suburb)
+        writeString(PriceDisplay)
     }
 
     companion object {

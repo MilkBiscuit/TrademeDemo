@@ -1,7 +1,7 @@
 package com.cheng.trademedemo.service
 
-import com.cheng.trademedemo.models.CategoryResponse
-import com.cheng.trademedemo.models.SearchResponse
+import com.cheng.trademedemo.model.CategoryResponse
+import com.cheng.trademedemo.model.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

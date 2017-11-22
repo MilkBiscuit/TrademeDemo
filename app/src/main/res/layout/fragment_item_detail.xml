@@ -1,0 +1,39 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cheng.trademedemo.ui.fragment.ItemDetailFragment">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/item_image"
+        android:layout_width="@dimen/item_image_height"
+        android:layout_height="@dimen/item_image_height"
+        android:layout_marginTop="@dimen/item_image_margin_top"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitStart"
+        />
+
+    <TextView
+        style="@style/CenterText"
+        android:id="@+id/item_title"
+        android:layout_marginTop="@dimen/bigger"
+        android:layout_marginStart="@dimen/small"
+        android:layout_marginEnd="@dimen/small"
+        android:textSize="@dimen/text_size_big"
+        />
+
+    <TextView
+        style="@style/CenterText"
+        android:id="@+id/item_listing_id"
+        android:layout_marginTop="@dimen/bigger"
+        />
+
+    <TextView
+        style="@style/CenterText"
+        android:id="@+id/item_price"
+        android:layout_marginTop="@dimen/bigger"
+        />
+
+</LinearLayout>

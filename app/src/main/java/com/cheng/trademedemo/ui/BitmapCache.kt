@@ -6,12 +6,10 @@ import com.android.volley.toolbox.ImageLoader
 
 class BitmapCache : ImageLoader.ImageCache {
 
-    val cache: LruCache<String, Bitmap> = LruCache<String, Bitmap>(20)
+    val cache: LruCache<String, Bitmap> = LruCache<String, Bitmap>(100)
 
     override fun getBitmap(url: String?): Bitmap? {
-        val bitmap = cache.get(url)
-
-        return bitmap
+        return cache.get(url)
     }
 
     override fun putBitmap(url: String?, bitmap: Bitmap?) {

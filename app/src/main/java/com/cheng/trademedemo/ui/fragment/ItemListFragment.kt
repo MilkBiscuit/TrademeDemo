@@ -1,5 +1,6 @@
 package com.cheng.trademedemo.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v4.app.Fragment
@@ -9,10 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.cheng.trademedemo.R
-import com.cheng.trademedemo.models.Listing
+import com.cheng.trademedemo.model.Listing
 import com.cheng.trademedemo.ui.adapter.ItemListRecyclerViewAdapter
 import com.cheng.trademedemo.ui.OnListItemClickedListener
-import java.util.*
+import com.cheng.trademedemo.ui.activity.ItemDetailActivity
+import com.cheng.trademedemo.ui.activity.MainActivity
+import com.cheng.trademedemo.ui.util.FragmentUtil
 
 class ItemListFragment : Fragment() {
 
@@ -57,14 +60,21 @@ class ItemListFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
 
-        outState?.putParcelableArrayList(KEY_LISTINGS,
-                listings as ArrayList<out Parcelable>)
+        outState?.putParcelableArrayList(KEY_LISTINGS, listings as ArrayList<out Parcelable>)
     }
 
     private fun createItemClickListener() : OnListItemClickedListener<Listing> {
         return object : OnListItemClickedListener<Listing> {
             override fun onListItemClicked(item: Listing) {
-
+                val mainActivity = activity as MainActivity
+                if (mainActivity.isMultiPaneLayout()) {
+                    val itemDetail = ItemDetailFragment.newInstance(item)
+                    FragmentUtil.setDetailFragment(fragmentManager, itemDetail, item.ListingId.toString())
+                } else {
+                    val intent = Intent(mainActivity, ItemDetailActivity::class.java)
+                    intent.putExtra(ItemDetailActivity.EXTRA_KEY_ITEM, item)
+                    startActivity(intent)
+                }
             }
         }
     }

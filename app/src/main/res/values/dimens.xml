@@ -13,10 +13,19 @@
     <dimen name="text_size_big">22sp</dimen>
     <dimen name="text_size_bigger">26sp</dimen>
 
+    <dimen name="divide_line_height">1px</dimen>
+
     <!-- Common search view -->
     <dimen name="search_layout_height">100dp</dimen>
 
-    <dimen name="list_item_height">44dp</dimen>
-    <dimen name="divide_line_height">1px</dimen>
+    <!-- Category List -->
+    <dimen name="category_list_item_height">80dp</dimen>
+
+    <!-- Item List -->
+    <dimen name="list_item_height">80dp</dimen>
+
+    <!-- Listing item detail -->
+    <dimen name="item_image_height">300dp</dimen>
+    <dimen name="item_image_margin_top">0dp</dimen>
 
 </resources>

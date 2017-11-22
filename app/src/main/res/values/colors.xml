@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">@android:color/white</color>
     <color name="black">@android:color/black</color>
-    <color name="divide_line">#7FFFFFFF</color>
+    <color name="divide_line">#FFFFFF</color>
     <color name="bg_progress_bar">#BF000000</color>
     <color name="bg_search_box">#FFB90F</color>
 </resources>
