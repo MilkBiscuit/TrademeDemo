@@ -11,64 +11,61 @@ class TradeMeApiServiceTest {
 
     @Test
     fun getCategoriesTest() {
-        val result = "No result"
+        var result = "No result"
         TradeMeApiService.requestCategories(
                 appContext,
                 {
-                    response -> assertEquals("Root", response.Name)
+                    result = "Success"
                     synchronized (syncObject){
                         syncObject.notify();
                     }
                 },
-                {
-                    assertEquals("Success", result)
-                })
+                {result = "Fail"})
 
         synchronized (syncObject){
             syncObject.wait()
         }
+        assertEquals("Success", result)
     }
 
     @Test
     fun searchCategoryTest() {
-        val result = "No result"
+        var result = "No result"
         TradeMeApiService.searchCategory(
                 appContext,
                 "3720",
                 {
-                    response -> assertNotNull(response.List)
+                    result = "Success"
                     synchronized (syncObject){
                         syncObject.notify();
                     }
                 },
-                {
-                    assertEquals("Success", result)
-                })
+                {result = "Fail"})
 
         synchronized (syncObject){
             syncObject.wait()
         }
+        assertEquals("Success", result)
     }
 
     @Test
     fun searchWithKeywordTest() {
-        val result = "No result"
+        var result = "No result"
         TradeMeApiService.searchKeyword(
                 appContext,
                 "iPhone",
                 {
-                    response -> assertNotNull(response.List)
+                    result = "Success"
                     synchronized (syncObject){
                         syncObject.notify();
                     }
                 },
-                {
-                    assertEquals("Success", result)
-                })
+                {result = "Fail"})
 
         synchronized (syncObject){
             syncObject.wait()
         }
+        assertEquals("Success", result)
     }
 
 }

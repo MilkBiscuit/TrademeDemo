@@ -46,14 +46,13 @@ class ItemListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
 
-        createItemClickListener()
-
         if (view is RecyclerView) {
             val recyclerView : RecyclerView = view
             val context = view.getContext()
             recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = (ItemListRecyclerViewAdapter(listings!!, createItemClickListener()))
+            recyclerView.adapter = ItemListRecyclerViewAdapter(listings!!, createItemClickListener())
         }
+
         return view
     }
 

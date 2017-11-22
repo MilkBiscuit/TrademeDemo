@@ -12,9 +12,9 @@ import retrofit2.Retrofit
 
 object TradeMeApiService {
 
-    const val SUCCESS_CODE = 200
+    private const val SUCCESS_CODE = 200
+    private const val WEB_SERVICE_BASE_URL = "https://api.tmsandbox.co.nz/v1/"
 
-    private val WEB_SERVICE_BASE_URL = "https://api.tmsandbox.co.nz/v1/"
     private var apiInterface: TradeMeApiInterface? = null
 
     fun getApiInterface(): TradeMeApiInterface {
