@@ -76,7 +76,6 @@ open class MainActivity : AppCompatActivity() {
         }
 
         val searchView : SearchView = findViewById(R.id.search_trade_me)
-        searchView.setQuery("iPhone", false)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(keyword: String): Boolean {
                 searchView.clearFocus()
