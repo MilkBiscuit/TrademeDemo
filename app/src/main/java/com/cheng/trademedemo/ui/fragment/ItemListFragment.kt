@@ -39,9 +39,7 @@ open class ItemListFragment : Fragment() {
 
         val recyclerView : RecyclerView = view.findViewById(R.id.list)
         val emptyView : View = view.findViewById(R.id.empty_view)
-        val context = view.context
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = ItemListRecyclerViewAdapter(listings!!, createItemClickListener())
         emptyView.visibility = if (listings!!.isEmpty()) View.VISIBLE else View.GONE
 

@@ -51,10 +51,8 @@ class CategoryListFragment : Fragment() {
 
         val recyclerView : RecyclerView = view.findViewById(R.id.list)
         val emptyView : View = view.findViewById(R.id.empty_view)
-        val context = view.context
         val subCategories = subCategory!!.Subcategories!!
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = CategoryListRecyclerViewAdapter(subCategories,
                 createItemClickListener())
         emptyView.visibility = if (subCategories.isEmpty()) View.VISIBLE else View.GONE
