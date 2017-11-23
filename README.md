@@ -8,4 +8,4 @@ A Trade me demo app for interview
 
 # Apk file
 You could download the apk directly from
-
+https://github.com/MilkBiscuit/TrademeDemo/blob/master/app-release.apk
