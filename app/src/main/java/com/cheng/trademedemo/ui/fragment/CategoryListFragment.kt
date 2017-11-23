@@ -49,13 +49,15 @@ class CategoryListFragment : Fragment() {
             UIUtil.setCategoryPath(activity as MainActivity, subCategory!!.Path!!)
         }
 
-        if (view is RecyclerView) {
-            val recyclerView : RecyclerView = view
-            val context = view.getContext()
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = CategoryListRecyclerViewAdapter(subCategory!!.Subcategories!!,
-                    createItemClickListener())
-        }
+        val recyclerView : RecyclerView = view.findViewById(R.id.list)
+        val emptyView : View = view.findViewById(R.id.empty_view)
+        val context = view.context
+        val subCategories = subCategory!!.Subcategories!!
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = CategoryListRecyclerViewAdapter(subCategories,
+                createItemClickListener())
+        emptyView.visibility = if (subCategories.isEmpty()) View.VISIBLE else View.GONE
 
         return view
     }
@@ -78,7 +80,7 @@ class CategoryListFragment : Fragment() {
                                     val listings = response.List
                                     val categoryItemsFragment =
                                             CategoryItemListFragment.newInstance(
-                                                    listings, item.Number)
+                                                    listings, item.Number, item.Path!!)
                                     FragmentUtil.setCategoryListFragment(fragmentManager,
                                             categoryItemsFragment, item.Path)
                                 }

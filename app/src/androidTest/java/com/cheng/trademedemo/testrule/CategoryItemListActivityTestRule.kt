@@ -13,6 +13,7 @@ class CategoryItemListActivityTestRule : ActivityTestRule<CategoryItemListFragme
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
         val intent = Intent(targetContext, CategoryItemListFragmentActivity::class.java)
         intent.putExtra(CategoryItemListFragmentActivity.EXTRA_CATEGORY_NUM, MockData.CATEGORY_NUM)
+        intent.putExtra(CategoryItemListFragmentActivity.EXTRA_CATEGORY_PATH, MockData.CATEGORY_PATH)
         intent.putParcelableArrayListExtra(CategoryItemListFragmentActivity.EXTRA_ITEMS, MockData.TWO_LISTINGS)
 
         return intent

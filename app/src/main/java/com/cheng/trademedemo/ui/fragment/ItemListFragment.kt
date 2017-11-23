@@ -37,12 +37,13 @@ open class ItemListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
 
-        if (view is RecyclerView) {
-            val recyclerView : RecyclerView = view
-            val context = view.getContext()
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = ItemListRecyclerViewAdapter(listings!!, createItemClickListener())
-        }
+        val recyclerView : RecyclerView = view.findViewById(R.id.list)
+        val emptyView : View = view.findViewById(R.id.empty_view)
+        val context = view.context
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = ItemListRecyclerViewAdapter(listings!!, createItemClickListener())
+        emptyView.visibility = if (listings!!.isEmpty()) View.VISIBLE else View.GONE
 
         return view
     }

@@ -12,23 +12,28 @@ class CategoryItemListFragment : ItemListFragment() {
 
     companion object {
         private const val KEY_CATEGORY_NUM = "CategoryNum"
+        private const val KEY_CATEGORY_PATH = "CategoryPath"
 
-        fun newInstance(listings: List<Listing>, categoryNum: String): CategoryItemListFragment {
+        fun newInstance(listings: List<Listing>, categoryNum: String, categoryPath: String):
+                CategoryItemListFragment {
             val fragment = CategoryItemListFragment()
             fragment.listings = listings
             fragment.categoryNum = categoryNum
+            fragment.categoryPath = categoryPath
 
             return fragment
         }
     }
 
     private var categoryNum: String = "-1"
+    private var categoryPath: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState != null) {
             categoryNum = savedInstanceState.getString(KEY_CATEGORY_NUM)
+            categoryPath = savedInstanceState.getString(KEY_CATEGORY_PATH)
         }
     }
 
@@ -36,7 +41,7 @@ class CategoryItemListFragment : ItemListFragment() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
         if (activity is MainActivity) {
-            UIUtil.setCategoryPath(activity as MainActivity, categoryNum)
+            UIUtil.setCategoryPath(activity as MainActivity, categoryPath)
         }
 
         return view
@@ -46,6 +51,7 @@ class CategoryItemListFragment : ItemListFragment() {
         super.onSaveInstanceState(outState)
 
         outState?.putString(KEY_CATEGORY_NUM, categoryNum)
+        outState?.putString(KEY_CATEGORY_PATH, categoryPath)
     }
 
 }

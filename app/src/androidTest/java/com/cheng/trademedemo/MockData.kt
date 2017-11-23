@@ -8,6 +8,7 @@ object MockData {
     const val ITEM_TITLE = "Mens Fashionista Overcoat"
     const val LISTING_ID: Long = 6194276
     const val CATEGORY_NUM = "0153-0438-3720-"
+    const val CATEGORY_PATH = "/Clothing-Fashion/Men/Jackets"
     const val PICTURE_HREF = "https://images.tmsandbox.co.nz/photoserver/thumb/893921.jpg"
     const val PRICE = "$117.00"
 
