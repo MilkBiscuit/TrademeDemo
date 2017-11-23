@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="@dimen/normal"
+        android:layout_marginStart="@dimen/small"
         android:textSize="@dimen/text_size_smaller"
         android:ellipsize="start"
         />

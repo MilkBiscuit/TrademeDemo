@@ -15,6 +15,9 @@
 
     <dimen name="divide_line_height">2dp</dimen>
 
+    <!-- Category List -->
+    <dimen name="category_list_item_height">80dp</dimen>
+
     <!-- Item List -->
     <dimen name="list_item_height">100dp</dimen>
 

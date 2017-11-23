@@ -19,7 +19,7 @@
     <dimen name="search_layout_height">100dp</dimen>
 
     <!-- Category List -->
-    <dimen name="category_list_item_height">80dp</dimen>
+    <dimen name="category_list_item_height">60dp</dimen>
 
     <!-- Item List -->
     <dimen name="list_item_height">80dp</dimen>
