@@ -21,6 +21,8 @@ https://developer.trademe.co.nz/api-overview/sandbox-environment/
 
 ![device-2017-11-23-232332](https://user-images.githubusercontent.com/20746964/33168362-92fa18aa-d0a5-11e7-8226-2c254f6efb84.png)
 
+![device-2017-11-24-124709](https://user-images.githubusercontent.com/20746964/33190793-b49905c8-d115-11e7-9d12-de1702c48759.png)
+
 # Apk file
 You could download the apk directly from
 https://github.com/MilkBiscuit/TrademeDemo/blob/master/app-release.apk
