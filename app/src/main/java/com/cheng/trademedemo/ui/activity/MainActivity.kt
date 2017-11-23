@@ -12,6 +12,7 @@ import com.cheng.trademedemo.service.TradeMeApiService
 import com.cheng.trademedemo.ui.fragment.CategoryListFragment
 import com.cheng.trademedemo.ui.fragment.ItemListFragment
 import com.cheng.trademedemo.ui.fragment.LogoFragment
+import com.cheng.trademedemo.ui.fragment.SearchItemListFragment
 import com.cheng.trademedemo.ui.util.FragmentUtil
 import com.cheng.trademedemo.ui.util.UIUtil
 
@@ -88,13 +89,13 @@ class MainActivity : AppCompatActivity() {
                         { response ->
                             refreshProgressBar(false)
 
-                            UIUtil.setCategoryPath(activity, "\"" + keyword + "\"")
                             if (response.List != null) {
                                 val listings = response.List
-                                val itemListFragment = ItemListFragment.newInstance(listings)
+                                val searchItemFragment = SearchItemListFragment.newInstance(
+                                        listings, keyword)
                                 FragmentUtil.setCategoryListFragment(
                                         supportFragmentManager,
-                                        itemListFragment,
+                                        searchItemFragment,
                                         keyword)
                             }
                         },

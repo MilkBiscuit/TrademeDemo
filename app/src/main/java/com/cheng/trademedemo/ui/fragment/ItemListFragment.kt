@@ -11,26 +11,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.cheng.trademedemo.R
 import com.cheng.trademedemo.model.Listing
-import com.cheng.trademedemo.ui.adapter.ItemListRecyclerViewAdapter
 import com.cheng.trademedemo.ui.OnListItemClickedListener
 import com.cheng.trademedemo.ui.activity.ItemDetailActivity
 import com.cheng.trademedemo.ui.activity.MainActivity
+import com.cheng.trademedemo.ui.adapter.ItemListRecyclerViewAdapter
 import com.cheng.trademedemo.ui.util.FragmentUtil
 
-class ItemListFragment : Fragment() {
-
-    companion object {
-        fun newInstance(listings: List<Listing>): ItemListFragment {
-            val fragment = ItemListFragment()
-            fragment.listings = listings
-
-            return fragment
-        }
-    }
+open class ItemListFragment : Fragment() {
 
     private val KEY_LISTINGS = "Listings";
 
-    private var listings: List<Listing>? = null
+    protected var listings: List<Listing>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

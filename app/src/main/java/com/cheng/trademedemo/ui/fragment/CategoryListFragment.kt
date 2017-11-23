@@ -68,17 +68,17 @@ class CategoryListFragment : Fragment() {
         return object : OnListItemClickedListener<SubCategory> {
             override fun onListItemClicked(item: SubCategory) {
                 if (item.IsLeaf) {
-                    UIUtil.setCategoryPath(activity as MainActivity, item.Path!!)
-
                     TradeMeApiService.searchCategory(
                             context,
                             item.Number!!,
-                            {searchResponse ->
-                                if (searchResponse.List != null) {
-                                    val listings = searchResponse.List
-                                    val fragment = ItemListFragment.newInstance(listings)
-                                    FragmentUtil.setCategoryListFragment(fragmentManager, fragment,
-                                            item.Path)
+                            {response ->
+                                if (response.List != null) {
+                                    val listings = response.List
+                                    val categoryItemsFragment =
+                                            CategoryItemListFragment.newInstance(
+                                                    listings, item.Number)
+                                    FragmentUtil.setCategoryListFragment(fragmentManager,
+                                            categoryItemsFragment, item.Path)
                                 }
                             },
                             {})
