@@ -16,7 +16,7 @@ import com.cheng.trademedemo.ui.fragment.SearchItemListFragment
 import com.cheng.trademedemo.ui.util.FragmentUtil
 import com.cheng.trademedemo.ui.util.UIUtil
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
     private val KEY_HAS_DATA = "hasData"
 
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         return detailFragment != null;
     }
 
-    private fun initResources() {
+    open fun initResources() {
         progressLayout = findViewById(R.id.progress)
         tvNoData = findViewById(R.id.no_data)
 

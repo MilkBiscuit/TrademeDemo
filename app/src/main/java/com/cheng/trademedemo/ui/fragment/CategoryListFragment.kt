@@ -45,7 +45,9 @@ class CategoryListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
 
-        UIUtil.setCategoryPath(activity as MainActivity, subCategory!!.Path!!)
+        if (activity is MainActivity) {
+            UIUtil.setCategoryPath(activity as MainActivity, subCategory!!.Path!!)
+        }
 
         if (view is RecyclerView) {
             val recyclerView : RecyclerView = view

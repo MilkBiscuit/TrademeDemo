@@ -56,14 +56,17 @@ open class ItemListFragment : Fragment() {
     private fun createItemClickListener() : OnListItemClickedListener<Listing> {
         return object : OnListItemClickedListener<Listing> {
             override fun onListItemClicked(item: Listing) {
-                val mainActivity = activity as MainActivity
-                if (mainActivity.isMultiPaneLayout()) {
-                    val itemDetail = ItemDetailFragment.newInstance(item)
-                    FragmentUtil.setDetailFragment(fragmentManager, itemDetail, item.ListingId.toString())
-                } else {
-                    val intent = Intent(mainActivity, ItemDetailActivity::class.java)
-                    intent.putExtra(ItemDetailActivity.EXTRA_KEY_ITEM, item)
-                    startActivity(intent)
+                if (activity is MainActivity) {
+                    val mainActivity = activity as MainActivity
+                    if (mainActivity.isMultiPaneLayout()) {
+                        val itemDetail = ItemDetailFragment.newInstance(item)
+                        FragmentUtil.setDetailFragment(fragmentManager, itemDetail,
+                                item.ListingId.toString())
+                    } else {
+                        val intent = Intent(mainActivity, ItemDetailActivity::class.java)
+                        intent.putExtra(ItemDetailActivity.EXTRA_KEY_ITEM, item)
+                        startActivity(intent)
+                    }
                 }
             }
         }

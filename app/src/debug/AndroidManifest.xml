@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cheng.trademedemo">
+
+    <application
+        android:allowBackup="true">
+
+        <activity
+            android:name=".ui.activity.CategoryItemListFragmentActivity"
+            />
+        <activity
+            android:name=".ui.activity.CategoryListFragmentActivity"
+            />
+        <activity
+            android:name=".ui.activity.DebugActivity"
+            />
+    </application>
+
+</manifest>

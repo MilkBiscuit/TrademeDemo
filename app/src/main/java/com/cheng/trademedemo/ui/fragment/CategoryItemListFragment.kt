@@ -35,7 +35,9 @@ class CategoryItemListFragment : ItemListFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
-        UIUtil.setCategoryPath(activity as MainActivity, categoryNum)
+        if (activity is MainActivity) {
+            UIUtil.setCategoryPath(activity as MainActivity, categoryNum)
+        }
 
         return view
     }
