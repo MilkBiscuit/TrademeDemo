@@ -1,8 +1,6 @@
 package com.cheng.trademedemo.ui.util
 
 import android.content.Context
-import android.text.TextUtils
-import android.widget.TextView
 import android.widget.Toast
 import com.cheng.trademedemo.R
 import com.cheng.trademedemo.ui.activity.MainActivity

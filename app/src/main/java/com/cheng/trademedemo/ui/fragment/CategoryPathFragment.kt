@@ -2,35 +2,18 @@ package com.cheng.trademedemo.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.cheng.trademedemo.R
 import com.cheng.trademedemo.model.CategoryPath
-import com.cheng.trademedemo.ui.CategoryPathRecyclerViewAdapter
-import com.cheng.trademedemo.ui.dummy.DummyContent
-import com.cheng.trademedemo.ui.dummy.DummyContent.DummyItem
+import com.cheng.trademedemo.ui.adapter.CategoryPathRecyclerViewAdapter
+import com.cheng.trademedemo.ui.OnListItemClickedListener
 
-/**
- * A fragment representing a list of Items.
- *
- *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
- * interface.
- */
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
- */
 class CategoryPathFragment : Fragment() {
-
-    interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: CategoryPath)
-    }
 
     companion object {
 
@@ -49,7 +32,6 @@ class CategoryPathFragment : Fragment() {
 
     private var pathNumber = ""
     private var pathName = ""
-    private var mListener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +46,6 @@ class CategoryPathFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_categorypath_list, container, false)
 
-        // Set the adapter
         if (view is RecyclerView) {
             val context = view.getContext()
 
@@ -76,13 +57,21 @@ class CategoryPathFragment : Fragment() {
                 categoryPaths.add(CategoryPath(pathNums[i], pathNames[i]))
                 i++
             }
-            view.adapter = CategoryPathRecyclerViewAdapter(categoryPaths, mListener)
+            view.adapter = CategoryPathRecyclerViewAdapter(categoryPaths, createItemClickListener())
 
             val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
                     false)
             view.layoutManager = layoutManager
         }
         return view
+    }
+
+    private fun createItemClickListener() : OnListItemClickedListener<CategoryPath> {
+        return object : OnListItemClickedListener<CategoryPath> {
+            override fun onListItemClicked(item: CategoryPath) {
+                fragmentManager.popBackStack(item.categoryNum, POP_BACK_STACK_INCLUSIVE)
+            }
+        }
     }
 
 }
