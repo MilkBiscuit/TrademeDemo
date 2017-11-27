@@ -27,5 +27,6 @@
     <!-- Listing item detail -->
     <dimen name="item_image_height">300dp</dimen>
     <dimen name="item_image_margin_top">0dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

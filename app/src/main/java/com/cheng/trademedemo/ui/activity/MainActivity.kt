@@ -9,10 +9,7 @@ import android.widget.TextView
 import com.cheng.trademedemo.R
 import com.cheng.trademedemo.service.TradeMeApiInterface
 import com.cheng.trademedemo.service.TradeMeApiService
-import com.cheng.trademedemo.ui.fragment.CategoryListFragment
-import com.cheng.trademedemo.ui.fragment.ItemListFragment
-import com.cheng.trademedemo.ui.fragment.LogoFragment
-import com.cheng.trademedemo.ui.fragment.SearchItemListFragment
+import com.cheng.trademedemo.ui.fragment.*
 import com.cheng.trademedemo.ui.util.FragmentUtil
 import com.cheng.trademedemo.ui.util.UIUtil
 
@@ -68,6 +65,10 @@ open class MainActivity : AppCompatActivity() {
 
                         val categoryList = CategoryListFragment.newInstance(response)
                         FragmentUtil.setCategoryListFragment(supportFragmentManager, categoryList)
+
+                        val header = CategoryPathFragment.newInstance(response.Path!!, response.Number!!)
+                        FragmentUtil.setContentFragment(supportFragmentManager, header,
+                                R.id.category_path, null)
                     },
                     {
                         refreshProgressBar(false)

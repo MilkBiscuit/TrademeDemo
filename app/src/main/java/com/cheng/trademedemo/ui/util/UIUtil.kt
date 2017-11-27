@@ -12,12 +12,12 @@ object UIUtil {
     private var toast: Toast? = null
 
     fun setCategoryPath(activity: MainActivity, path: String) {
-        val categoryPathView = activity.findViewById<TextView>(R.id.category_path)
-        if (TextUtils.isEmpty(path)) {
-            categoryPathView.setText(R.string.browse_categories)
-        } else {
-            categoryPathView.text = path
-        }
+//        val categoryPathView = activity.findViewById<TextView>(R.id.category_path)
+//        if (TextUtils.isEmpty(path)) {
+//            categoryPathView.setText(R.string.browse_categories)
+//        } else {
+//            categoryPathView.text = path
+//        }
     }
 
     fun showToast(context: Context, text: String) {

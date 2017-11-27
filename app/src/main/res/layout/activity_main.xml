@@ -11,7 +11,12 @@
 
     <include layout="@layout/search_box" />
 
-    <include layout="@layout/header_category_path" />
+    <!--<include layout="@layout/header_category_path" />-->
+    <FrameLayout
+        android:id="@+id/category_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
     <FrameLayout
         android:layout_width="match_parent"
