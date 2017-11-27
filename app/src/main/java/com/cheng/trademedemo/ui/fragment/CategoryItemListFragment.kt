@@ -41,7 +41,7 @@ class CategoryItemListFragment : ItemListFragment() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
         if (activity is MainActivity) {
-            UIUtil.setCategoryPath(activity as MainActivity, categoryPath)
+            UIUtil.setCategoryPath(activity as MainActivity, categoryPath, categoryNum)
         }
 
         return view

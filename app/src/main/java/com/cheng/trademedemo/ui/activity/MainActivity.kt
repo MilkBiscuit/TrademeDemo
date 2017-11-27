@@ -65,10 +65,6 @@ open class MainActivity : AppCompatActivity() {
 
                         val categoryList = CategoryListFragment.newInstance(response)
                         FragmentUtil.setCategoryListFragment(supportFragmentManager, categoryList)
-
-                        val header = CategoryPathFragment.newInstance(response.Path!!, response.Number!!)
-                        FragmentUtil.setContentFragment(supportFragmentManager, header,
-                                R.id.category_path, null)
                     },
                     {
                         refreshProgressBar(false)

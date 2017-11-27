@@ -46,7 +46,7 @@ class CategoryListFragment : Fragment() {
         val view = inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
 
         if (activity is MainActivity) {
-            UIUtil.setCategoryPath(activity as MainActivity, subCategory!!.Path!!)
+            UIUtil.setCategoryPath(activity as MainActivity, subCategory!!.Path!!, subCategory!!.Number!!)
         }
 
         val recyclerView : RecyclerView = view.findViewById(R.id.list)
@@ -81,20 +81,12 @@ class CategoryListFragment : Fragment() {
                                                     listings, item.Number, item.Path!!)
                                     FragmentUtil.setCategoryListFragment(fragmentManager,
                                             categoryItemsFragment, item.Path)
-
-                                    val header = CategoryPathFragment.newInstance(item.Path, item.Number)
-                                    FragmentUtil.setContentFragment(fragmentManager, header,
-                                            R.id.category_path, null)
                                 }
                             },
                             {})
                 } else {
                     val fragment = newInstance(item)
                     FragmentUtil.setCategoryListFragment(fragmentManager, fragment, item.Name)
-
-                    val header = CategoryPathFragment.newInstance(item.Path!!, item.Number!!)
-                    FragmentUtil.setContentFragment(fragmentManager, header,
-                            R.id.category_path, null)
                 }
             }
         }
